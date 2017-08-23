@@ -1,0 +1,21 @@
+body{
+
+	background-color:#b7948d;
+}
+
+h1{
+	padding-left: 20px;
+	font-family: 'Sedgwick Ave', cursive;
+}
+button{
+	border-radius: 10px;
+	font-family: 'Sedgwick Ave', cursive;
+
+}
+.container{
+	margin:0 auto;
+}
+
+form{
+	float:right;
+}
