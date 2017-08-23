@@ -4,33 +4,50 @@ console.log("test")
     
 
 
-$("#add-gif").on("click",function(){
+$("#gif-view").on("click", ".gif",function(){})
 
-
-
-
-	var gif= $(this).attr("data-name");
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q='+buttonText+'&limit10&api_key=dc6zaTOxFJmzC";
+$("#gif-buttons").on("click",".gif-search",function(){
+	var buttonText = $(this).text().trim();
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+buttonText+"&limit=10&api_key=dc6zaTOxFJmzC";
 	
     $.ajax({
       url: queryURL,
       method: 'GET'
     }).done(function(response) {
+    	$("#gif-view").empty();
+    	var lean = response.data.length
+    	var i=0
+    	for (i; i <lean; i++) {
+    	
+    		var image = $("<img src='"+response.data[i].images.original.url+"'>");
+    		$("#gif-view").append(image);
+    	}
       console.log(response);
     });
 
 
+
+
+
+
+
 })
+
+
+
+
+
+
 function renderButtons(){
-	$("#gif-view").empty();
+	$("#gif-buttons").empty();
 
 	for (var i = 0; i < topics.length; i++) {
 		var a =$("<button>");
-		a.addClass("gif");
+		a.addClass("gif-search");
 		a.attr("data-name",topics[i]);
 		a.text(topics[i]);
 
-		$("#gif-view").append(a);
+		$("#gif-buttons").append(a);
 	}
 }
 
@@ -41,10 +58,12 @@ $("#add-gif").on("click",function(event){
 
 	renderButtons();
 
+
+	
 })
 
 
-
+renderButtons();
 
 
 
